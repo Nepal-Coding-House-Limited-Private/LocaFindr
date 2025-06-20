@@ -10,7 +10,10 @@ export default function ComingSoonModal({ onClose }: { onClose: () => void }) {
           &times;
         </button>
         <div className="mb-4">
-          <svg className="mx-auto h-12 w-12 text-red-500 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="10" strokeWidth="2" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h8m-4-4v8" /></svg>
+          <svg className="mx-auto h-12 w-12 text-red-500 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <circle cx="12" cy="12" r="10" strokeWidth="2" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h8m-4-4v8" />
+          </svg>
         </div>
         <h3 className="text-2xl font-bold mb-2">Coming Soon!</h3>
         <p className="text-gray-300 mb-4">We're working hard to bring you this feature. Stay tuned!</p>
