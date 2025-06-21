@@ -1,4 +1,4 @@
-/* Custom professional scrollbar styles */
+/* Custom professional scrollbar styles
 ::-webkit-scrollbar {
   width: 10px;
   background: #18181b;
@@ -15,8 +15,7 @@
   background: #18181b;
 }
 
-/* For Firefox */
 html {
   scrollbar-width: thin;
   scrollbar-color: #ef4444 #18181b;
-}
+} */
