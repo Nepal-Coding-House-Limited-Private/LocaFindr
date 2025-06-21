@@ -15,6 +15,8 @@ const App: React.FC = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/navbar" element={<Navbar />} />
+        {/* Navbar route for testing, can be removed later */}
         <Route path="/" element={<Home />} />
         <Route path="/motive" element={<Motive />} />
         <Route path="/coming-soon" element={<ComingSoonModal onClose={() => {}} />} />
