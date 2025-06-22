@@ -7,25 +7,27 @@ import Motive from './Pages/Motive';
 import NotFound from './Pages/NotFound';
 import ComingSoonModal from './Pages/ComingSoonModal';
 import Navbar from './components/Navbar';
-import Pricing from './Pages/Pricing'; 
+import Pricing from './Pages/Pricing';
 import SearchResults from './Pages/Search';
-import Login from './Auth/Login'; // Importing Login component
+import Login from './Auth/Login';
+import TermsAndPolicy from './Pages/TermsAndPolicy';
+import Footer from './components/Footer';
 
 const App: React.FC = () => {
   return (
     <Router>
       <Routes>
         <Route path="/navbar" element={<Navbar />} />
-        {/* Navbar route for testing, can be removed later */}
         <Route path="/" element={<Home />} />
         <Route path="/motive" element={<Motive />} />
         <Route path="/coming-soon" element={<ComingSoonModal onClose={() => {}} />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/pricing" element={<Pricing />} /> {/* Adding the Pricing route */}
+        <Route path="/pricing" element={<Pricing />} />
         <Route path="/search" element={<SearchResults />} />
-        <Route path="/login" element={<Login />} /> {/* Adding the Login route */}
-
+        <Route path="/login" element={<Login />} />
+        <Route path="/terms" element={<TermsAndPolicy />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };

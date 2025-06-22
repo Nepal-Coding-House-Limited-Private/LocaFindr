@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Abhaya Solution",
+    "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+    "description": "A leading provider of innovative tech solutions for businesses.",
+    "location": "Bangalore, India",
+    "website": "https://abhayasolution.com",
+    "reviews": [
+      { "user": "Alice", "comment": "Great service and friendly staff!", "rating": 5 },
+      { "user": "Bob", "comment": "Very professional and reliable.", "rating": 4 },
+      { "user": "Charlie", "comment": "Good experience overall.", "rating": 4 }
+    ],
+    "likes": 120,
+    "dislikes": 8,
+    "comments": [
+      { "user": "Diana", "text": "Highly recommend this place!" },
+      { "user": "Evan", "text": "Had a minor issue but it was resolved quickly." }
+    ]
+  },
+  {
+    "name": "Digital Yak Labs",
+    "image": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
+    "description": "Digital Yak Labs is a creative digital agency specializing in web and mobile solutions.",
+    "location": "Kathmandu, Nepal",
+    "website": "https://digitalyaklabs.com",
+    "reviews": [
+      { "user": "Priya", "comment": "Amazing creativity and fast delivery!", "rating": 5 },
+      { "user": "Samir", "comment": "Loved the design and support.", "rating": 4 }
+    ],
+    "likes": 98,
+    "dislikes": 3,
+    "comments": [
+      { "user": "Rina", "text": "Best digital agency in Nepal!" }
+    ]
+  },
+  {
+    "name": "Nepal Coding House Private Limited",
+    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
+    "description": "A top software development company delivering scalable solutions.",
+    "location": "Lalitpur, Nepal",
+    "website": "https://nepalcodinghouse.com",
+    "reviews": [
+      { "user": "Sujan", "comment": "Professional team and great results.", "rating": 5 },
+      { "user": "Mina", "comment": "Very satisfied with their service.", "rating": 4 }
+    ],
+    "likes": 110,
+    "dislikes": 5,
+    "comments": [
+      { "user": "Bikash", "text": "Highly skilled developers!" }
+    ]
+  },
+  {
+    "name": "Create Crafters Group Of Company",
+    "image": "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
+    "description": "A group of companies focused on creative solutions and business growth.",
+    "location": "Pokhara, Nepal",
+    "website": "https://createcrafters.com",
+    "reviews": [
+      { "user": "Anil", "comment": "Excellent business support!", "rating": 5 },
+      { "user": "Sita", "comment": "Creative and reliable.", "rating": 4 }
+    ],
+    "likes": 87,
+    "dislikes": 2,
+    "comments": [
+      { "user": "Manish", "text": "Great for startups!" }
+    ]
+  }
+]

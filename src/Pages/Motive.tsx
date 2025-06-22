@@ -1,55 +1,68 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // ✅ this was missing
+import { Link } from 'react-router-dom';
 import ComingSoonModal from './ComingSoonModal';
+import Navbar from '../components/Navbar';
 
 const Motive: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
 
   return (
-    <main className="relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-zinc-950 to-gray-900 text-white font-sans overflow-hidden">
-      {/* Decorative background */}
-      <div
-        className="absolute top-0 left-0 w-80 h-80 bg-red-600 opacity-20 rounded-full blur-3xl -z-10 animate-pulse"
-        style={{ top: '-5rem', left: '-5rem' }}
-      />
-      <div
-        className="absolute bottom-0 right-0 w-72 h-72 bg-red-800 opacity-10 rounded-full blur-2xl -z-10 animate-pulse"
-        style={{ bottom: '-3rem', right: '-3rem' }}
-      />
+    <>
+      <Navbar />
+      <main className="relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-white via-gray-50 to-gray-100 text-gray-900 font-sans overflow-hidden px-6 py-16 md:py-24">
+        
+        {/* Unique coral/orange blobs */}
+        <div
+          className="absolute top-[-6rem] left-[-6rem] w-96 h-96 bg-[#FF6F59] opacity-30 rounded-full blur-[80px] animate-[pulse_10s_ease-in-out_infinite] -z-10"
+        />
+        <div
+          className="absolute bottom-[-4rem] right-[-4rem] w-80 h-80 bg-[#FF9173] opacity-20 rounded-full blur-[60px] animate-[pulse_8s_ease-in-out_infinite] -z-10"
+        />
 
-      <section className="text-center px-6 py-10 max-w-2xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight drop-shadow-lg">
-          Our <span className="text-red-500">Motive</span>
-        </h2>
-        <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
-          LocaFindr aims to empower communities by making it easy to discover local businesses, services, and hidden gems.
-          <br className="hidden md:block" />
-          <span className="block mt-2">
-            We believe in supporting local economies and helping people connect with what matters most, right where they live.
-          </span>
-        </p>
+        <section className="text-center max-w-3xl mx-auto">
+          <h2 className="text-5xl md:text-6xl font-extrabold mb-10 tracking-tight text-[#FF6F59] drop-shadow-sm">
+            Our <span className="text-[#FF9173]">Motive</span>
+          </h2>
 
-        {/* ✅ Correct routing with Link */}
-        <Link to="/get-started">
-          <button className="px-6 py-3 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-all">
-            Get Started
-          </button>
-        </Link>
+          <p className="text-lg md:text-xl text-gray-700 mb-14 leading-relaxed max-w-2xl mx-auto font-[450] tracking-wide">
+            LocaFindr aims to empower communities by making it easy to discover local businesses, services, and hidden gems.
+            <br className="hidden md:block" />
+            <span className="block mt-4 font-[400] text-gray-600">
+              We believe in supporting local economies and helping people connect with what matters most, right where they live.
+            </span>
+          </p>
 
-        <div className="mt-8 flex flex-col md:flex-row gap-6 justify-center">
-          <div className="bg-zinc-900 bg-opacity-80 rounded-xl p-6 shadow-md flex-1 min-w-[220px]">
-            <h3 className="text-xl font-semibold mb-2 text-red-400">Empower Local</h3>
-            <p className="text-gray-400">Boost small businesses and foster a thriving local marketplace.</p>
+          <Link to="/get-started" aria-label="Get Started with LocaFindr">
+            <button className="px-10 py-4 bg-[#FF6F59] hover:bg-[#FF5A3F] active:bg-[#E04E31] rounded-full font-semibold text-lg shadow-lg text-white transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-[#FF6F59]/50">
+              Get Started
+            </button>
+          </Link>
+
+          <div className="mt-16 flex flex-col md:flex-row gap-12 justify-center">
+            {/* Premium smooth cards */}
+            <div className="bg-white shadow-xl rounded-3xl p-10 flex-1 min-w-[280px] cursor-default hover:shadow-2xl transition duration-400 ease-in-out border border-gray-200">
+              <h3 className="text-3xl font-semibold mb-4 text-[#FF6F59] tracking-wide">
+                Empower Local
+              </h3>
+              <p className="text-gray-700 text-lg leading-relaxed font-[450]">
+                Boost small businesses and foster a thriving local marketplace.
+              </p>
+            </div>
+
+            <div className="bg-white shadow-xl rounded-3xl p-10 flex-1 min-w-[280px] cursor-default hover:shadow-2xl transition duration-400 ease-in-out border border-gray-200">
+              <h3 className="text-3xl font-semibold mb-4 text-[#FF9173] tracking-wide">
+                Connect People
+              </h3>
+              <p className="text-gray-700 text-lg leading-relaxed font-[450]">
+                Bridge the gap between people and the services they need, close to home.
+              </p>
+            </div>
           </div>
-          <div className="bg-zinc-900 bg-opacity-80 rounded-xl p-6 shadow-md flex-1 min-w-[220px]">
-            <h3 className="text-xl font-semibold mb-2 text-red-400">Connect People</h3>
-            <p className="text-gray-400">Bridge the gap between people and the services they need, close to home.</p>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {showModal && <ComingSoonModal onClose={() => setShowModal(false)} />}
-    </main>
+        {showModal && <ComingSoonModal onClose={() => setShowModal(false)} />}
+      </main>
+    </>
   );
 };
 

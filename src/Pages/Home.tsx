@@ -3,13 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Search, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar'; // Adjust the import path as necessary
-
-const dummyData = [
-  "Digital Yak Labs",
-  "Tech Innovators",
-  "Abhaya Solutions",
-  "Create Crafters Group Of Company"
-];
+import companies from '../data/companies.json';
 
 const RECENT_KEY = 'recent_searches';
 
@@ -23,6 +17,8 @@ export function Home() {
     const stored = localStorage.getItem(RECENT_KEY);
     if (stored) setRecent(JSON.parse(stored));
   }, []);
+
+  const dummyData = companies.map((c) => c.name);
 
   const filteredResults = query
     ? dummyData.filter((item) =>
