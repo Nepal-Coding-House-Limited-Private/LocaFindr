@@ -1,4 +1,7 @@
 import React from 'react';
+import { FaFacebook, FaTiktok, FaInstagram } from "react-icons/fa";
+import ESEWA from '../assets/esewa.png'
+import Khalti from '../assets/khalti.png'
 
 function Footer() {
   return (
@@ -35,14 +38,15 @@ function Footer() {
         <div>
           <div className="font-bold mb-3 text-xl text-[#1a2340] border-b-2 border-blue-900 inline-block">Follow us on</div>
           <div className="flex gap-5 mt-4 mb-8 text-3xl">
-            <a href="#" className="hover:text-blue-500"><i className="fab fa-facebook-f"></i><span className="sr-only">Facebook</span></a>
-            <a href="#" className="hover:text-blue-500"><i className="fab fa-twitter"></i><span className="sr-only">Twitter</span></a>
-            <a href="#" className="hover:text-pink-500"><i className="fab fa-instagram"></i><span className="sr-only">Instagram</span></a>
-            <a href="#" className="hover:text-blue-800"><i className="fab fa-linkedin-in"></i><span className="sr-only">LinkedIn</span></a>
+          <FaFacebook />
+           <FaTiktok />
+<FaInstagram />
+           
           </div>
-          <div className="font-bold mb-3 text-xl text-[#1a2340] border-b-2 border-blue-900 inline-block">Partners</div>
-          <div className="mt-4">
-            <a href="#" className="inline-block bg-white border-2 border-blue-300 rounded-xl px-6 py-3 shadow-lg text-blue-700 font-bold text-lg tracking-wide">tawk.to <span className="ml-2 bg-blue-100 text-blue-700 px-3 py-1 rounded text-sm font-semibold">PARTNER</span></a>
+          <div className="font-bold mb-3 text-xl text-[#1a2340] border-b-2 border-blue-900 inline-block">We Acpect</div>
+          <div className="mt-4 flex h-[60px]">
+            <img src= {ESEWA} alt="" />
+            <img src= {Khalti} alt="" />
           </div>
         </div>
       </div>
