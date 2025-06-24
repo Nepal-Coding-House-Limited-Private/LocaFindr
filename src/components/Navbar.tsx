@@ -3,8 +3,6 @@ import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
 const navItems = [
-  { name: 'Home', path: '/' },
-  { name: 'Motive', path: '/motive' },
   { name: 'Pricing', path: '/pricing' },
 ];
 
@@ -12,7 +10,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-white px-6 py-4  flex justify-between items-center relative z-50">
+    <nav className="bg-white px-6 py-4 flex justify-between items-center relative z-50">
       {/* Logo */}
       <div className="text-[#1C40FC] font-extrabold text-3xl tracking-tight">
         <Link to="/">LocaFindr</Link>
@@ -37,6 +35,12 @@ export default function Navbar() {
             className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
           >
             Login
+          </Link>
+          <Link
+            to="/register"
+            className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-md font-semibold transition"
+          >
+            Register
           </Link>
         </div>
       </div>
@@ -75,11 +79,11 @@ export default function Navbar() {
               Login
             </Link>
             <Link
-              to="/get-started"
+              to="/register"
               onClick={() => setIsOpen(false)}
               className="bg-blue-600 hover:bg-blue-700 text-white text-sm text-center py-2 rounded-md transition"
             >
-              Get Started
+              Register
             </Link>
           </div>
         </div>

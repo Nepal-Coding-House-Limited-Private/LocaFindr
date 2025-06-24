@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+@keyframes bubble-move {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.1); }
+}
+@keyframes bubble-move2 {
+  0%, 100% { transform: translateX(0) scale(1); }
+  50% { transform: translateX(40px) scale(1.08); }
+}
+@keyframes bubble-move3 {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(30px) scale(0.95); }
+}
+.animate-bubble-move {
+  animation: bubble-move 7s ease-in-out infinite;
+}
+.animate-bubble-move2 {
+  animation: bubble-move2 9s ease-in-out infinite;
+}
+.animate-bubble-move3 {
+  animation: bubble-move3 11s ease-in-out infinite;
+}

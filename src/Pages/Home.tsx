@@ -53,7 +53,14 @@ export function Home() {
   return (
     <>
       <Navbar />
-      <main className="bg-gray-100 min-h-screen w-full px-6 py-16 flex flex-col items-center">
+      <main className="relative bg-white min-h-screen w-full px-6 py-16 flex flex-col items-center overflow-hidden">
+        {/* Decorative Bubbles */}
+        <div className="pointer-events-none absolute inset-0 z-0">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-100 rounded-full opacity-60 blur-2xl animate-bubble-move" />
+          <div className="absolute bottom-20 right-20 w-40 h-40 bg-pink-100 rounded-full opacity-50 blur-2xl animate-bubble-move2" />
+          <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-purple-100 rounded-full opacity-40 blur-2xl animate-bubble-move3" />
+        </div>
+
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: -40 }}
