@@ -1,3 +1,4 @@
+// src/App.tsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -12,6 +13,7 @@ import SearchResults from './Pages/Search';
 import Login from './Auth/Login';
 import TermsAndPolicy from './Pages/TermsAndPolicy';
 import Footer from './components/Footer';
+import Dashboard from './Pages/Dashboard';
 
 const App: React.FC = () => {
   return (
@@ -25,6 +27,10 @@ const App: React.FC = () => {
         <Route path="/search" element={<SearchResults />} />
         <Route path="/login" element={<Login />} />
         <Route path="/terms" element={<TermsAndPolicy />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        {/* Add more routes as needed */}
+        
+        {/* Catch-all route for 404 Not Found */}
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
