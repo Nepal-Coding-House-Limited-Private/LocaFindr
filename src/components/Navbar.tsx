@@ -10,14 +10,14 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-white px-6 py-4 flex justify-between items-center relative z-50">
+    <nav className="bg-white px-6 py-4 flex justify-between items-center relative z-50 border-b border-gray-200 ">
       {/* Logo */}
       <div className="text-[#1C40FC] font-extrabold text-3xl tracking-tight">
         <Link to="/">LocaFindr</Link>
       </div>
 
       {/* Desktop Navigation */}
-      <div className="hidden md:flex items-center space-x-8">
+      <div className="hidden md:flex items-center space-x-0">
         {navItems.map((item) => (
           <Link
             key={item.name}
@@ -32,7 +32,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-4 ml-6">
           <Link
             to="/login"
-            className="text-gray-600 hover:text-blue-600 transition-colors text-sm"
+            className="text-gray-600 hover:text-blue-600 transition-colors text-sm font-semibold"
           >
             Login
           </Link>

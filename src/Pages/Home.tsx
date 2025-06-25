@@ -4,6 +4,7 @@ import { Search, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar'; // Adjust the import path as necessary
 import companies from '../data/companies.json';
+import Footer from '../components/Footer'; // Adjust the import path as necessary
 
 const RECENT_KEY = 'recent_searches';
 
@@ -220,6 +221,10 @@ export function Home() {
           </p>
         </motion.section>
       </main>
+
+      <Footer />
+
+      {/* Styles for decorative bubbles */}
     </>
   );
 }

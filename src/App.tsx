@@ -28,12 +28,12 @@ const App: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/terms" element={<TermsAndPolicy />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/footer" element={<Footer />} />
         {/* Add more routes as needed */}
         
         {/* Catch-all route for 404 Not Found */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer />
     </Router>
   );
 };

@@ -1,185 +1,146 @@
-import React, { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, User, Briefcase, Star, Layers } from 'lucide-react';
-import { RiBankCard2Line } from 'react-icons/ri';
-import Navbar from '../components/Navbar';
+import { useRef } from "react";
+import Navbar from "../components/Navbar";
+import "../App.css";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Footer from "../components/Footer";
 
-type Plan = {
+// Define type for plan
+type PricingPlan = {
   banner: string;
-  title: string;
-  price: {
-    weekly?: string;
-    monthly: string;
-    annually?: string;
-  };
+  amount: string;
+  description: string;
   features: string[];
-  icon: React.ReactNode;
-  needsRenewal?: boolean;
 };
 
-const individualPlans: Plan[] = [
+const pricingPlans: PricingPlan[] = [
   {
-    banner: 'Small Audience',
-    title: 'Free User',
-    price: { monthly: 'Free' },
-    features: ['Basic Search', 'Limited Access'],
-    icon: <User size={28} className="text-sky-500" />,
+    banner: "Basic",
+    amount: "NPR 3000 / 3 months",
+    description: "Ideal for small businesses and startups looking to establish their online presence.",
+    features: [
+      "Up to 10,000 monthly searches",
+      "Basic analytics dashboard",
+      "Email support",
+      "Access to community forums",
+    ],
   },
   {
-    banner: 'Growing User',
-    title: 'Pro User',
-    price: { weekly: 'Rs. 49/wk', monthly: 'Rs. 199/mo', annually: 'Rs. 1899/yr' },
-    features: ['Advanced Search', 'Priority Support', 'No Ads'],
-    icon: <Star size={28} className="text-yellow-500" />,
-    needsRenewal: true,
+    banner: "Pro",
+    amount: "NPR 6000 / 6 months",
+    description: "Great for growing businesses that need advanced insights and support.",
+    features: [
+      "Up to 100,000 monthly searches",
+      "Advanced analytics dashboard",
+      "Priority email support",
+      "Monthly performance reports",
+    ],
   },
   {
-    banner: 'Elite Access',
-    title: 'Elite User',
-    price: { weekly: 'Rs. 99/wk', monthly: 'Rs. 399/mo', annually: 'Rs. 3899/yr' },
-    features: ['All Pro Features', 'Early Access', 'VIP Badge'],
-    icon: <Layers size={28} className="text-sky-500" />,
-    needsRenewal: true,
-  },
-];
-
-const shopPlans: Plan[] = [
-  {
-    banner: 'Starter Pack',
-    title: 'Starter Shop',
-    price: { monthly: 'Rs. 499/mo' },
-    features: ['List Your Business', 'Basic Analytics'],
-    icon: <Briefcase size={28} className="text-sky-500" />,
-    needsRenewal: true,
-  },
-  {
-    banner: 'Growth Pack',
-    title: 'Growth Shop',
-    price: { monthly: 'Rs. 999/mo' },
-    features: ['Featured Listings', 'Advanced Analytics', 'Support'],
-    icon: <Star size={28} className="text-yellow-500" />,
-    needsRenewal: true,
-  },
-  {
-    banner: 'Premium Pack',
-    title: 'Premium Shop',
-    price: { monthly: 'Rs. 1499/mo' },
-    features: ['All Tools', 'Custom Branding', 'Dedicated Manager'],
-    icon: <Layers size={28} className="text-green-500" />,
-    needsRenewal: true,
+    banner: "Enterprise",
+    amount: "Contact us",
+    description: "Custom solutions for large organizations with unique needs and full support.",
+    features: [
+      "Unlimited searches",
+      "Custom dashboards",
+      "Dedicated account manager",
+      "24/7 support",
+    ],
   },
 ];
 
 function Pricing() {
-  const [selectedType, setSelectedType] = useState<'individual' | 'shop' | null>(null);
-  const [index, setIndex] = useState(0);
-  const pricingRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const handleChooseType = (type: 'individual' | 'shop') => {
-    setSelectedType(type);
-    setTimeout(() => {
-      pricingRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 200);
+  const scrollLeft = () => {
+    scrollRef.current?.scrollBy({ left: -300, behavior: "smooth" });
   };
 
-  const handlePrev = () => {
-    const plans = selectedType === 'shop' ? shopPlans : individualPlans;
-    setIndex((prev) => (prev - 1 + plans.length) % plans.length);
+  const scrollRight = () => {
+    scrollRef.current?.scrollBy({ left: 300, behavior: "smooth" });
   };
-
-  const handleNext = () => {
-    const plans = selectedType === 'shop' ? shopPlans : individualPlans;
-    setIndex((prev) => (prev + 1) % plans.length);
-  };
-
-  const plans = selectedType === 'shop' ? shopPlans : individualPlans;
 
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-white text-gray-900 py-12 px-4 sm:px-6 font-sans">
-        {/* Hero Section */}
-        <div className="text-center max-w-3xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 text-gray-800">
-            Start Your Journey With Us 🚀
-          </h1>
-          <p className="text-lg text-gray-600 mb-10">
-            Choose the path that fits you best. Whether you're an individual creator or a growing business, we’ve got you.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button
-              onClick={() => handleChooseType('individual')}
-              className="bg-sky-500 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-sky-600 transition"
-            >
-              I'm an Individual
-            </button>
-            <button
-              onClick={() => handleChooseType('shop')}
-              className="bg-yellow-400 text-gray-900 px-6 py-3 rounded-full text-lg font-semibold hover:bg-yellow-500 transition"
-            >
-              I'm a Shop Owner
-            </button>
+      <main className="min-h-screen flex flex-col items-center justify-start bg-gradient-to-br from-blue-50 via-pink-50 to-purple-100 text-white font-sans pt-24">
+        <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-black text-center px-3">
+          Select the Plan That Best Fits Your Business
+        </h1>
+        <p className="text-lg md:text-xl max-w-[640px] text-gray-600 mb-8 text-center px-3">
+          Whether you're a small SME or a large D2C brand, we have a plan tailored to meet your specific needs.
+        </p>
+
+        {/* Mobile Section with Side Scroll and Arrows */}
+        <div className="relative w-full md:hidden flex items-center">
+          <button
+            onClick={scrollLeft}
+            className="absolute left-2 z-10 p-2 bg-white text-blue-600 rounded-full shadow-md"
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          <div
+            ref={scrollRef}
+            className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory px-6 py-4 w-full"
+          >
+            {pricingPlans.map((plan, index) => (
+              <div
+                key={index}
+                className="bg-white shadow-xl rounded-2xl px-6 py-8 w-full max-w-[90vw] text-center border border-gray-200 flex-shrink-0 snap-start"
+              >
+                <h2 className="text-2xl font-bold mb-4 text-gray-800">{plan.banner}</h2>
+                <p className="text-xl font-semibold mb-6 text-blue-600">{plan.amount}</p>
+                <p className="text-gray-700 mb-6">{plan.description}</p>
+                <ul className="text-left text-gray-600 mb-6">
+                  {plan.features.map((feature, idx) => (
+                    <li key={idx} className="mb-2 flex items-center">
+                      <span className="inline-block w-3 h-3 bg-blue-600 rounded-full mr-2"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition duration-300">
+                  Choose Plan
+                </button>
+              </div>
+            ))}
           </div>
+
+          <button
+            onClick={scrollRight}
+            className="absolute right-2 z-10 p-2 bg-white text-blue-600 rounded-full shadow-md"
+          >
+            <ChevronRight size={24} />
+          </button>
         </div>
 
-        {/* Pricing Cards */}
-        {selectedType && (
-          <div ref={pricingRef} className="mt-16 flex flex-col items-center gap-6">
-            <div className="flex items-center justify-center gap-4 w-full max-w-6xl flex-wrap sm:flex-nowrap px-2">
-              <button
-                onClick={handlePrev}
-                className="p-2 rounded-full bg-gray-100 hover:bg-sky-100 transition shadow-sm border border-gray-200"
-                aria-label="Previous"
-              >
-                <ChevronLeft className="text-sky-500 w-5 h-5" />
-              </button>
-
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={plans[index]?.title || index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className="bg-white border p-5 sm:p-6 rounded-2xl shadow-xl w-full max-w-sm flex flex-col items-center text-center"
-                >
-                  <div className={`w-full py-2 text-lg font-bold rounded ${selectedType === 'shop' ? 'bg-yellow-400 text-gray-900' : 'bg-sky-100 text-sky-600'}`}>
-                    {plans[index].banner}
-                  </div>
-                  <h3 className="text-2xl font-bold mt-4">{plans[index].title}</h3>
-                  <p className="text-sky-500 text-2xl font-semibold mt-2">{plans[index].price.monthly}</p>
-                  {plans[index].needsRenewal && (
-                    <p className="text-xs text-gray-500 mt-1 flex items-center justify-center gap-1">
-                      <RiBankCard2Line className="text-gray-400" size={14} />
-                      Renews every 3 months
-                    </p>
-                  )}
-                  <ul className="mt-4 text-sm text-gray-700 space-y-2 w-full text-left">
-                    {plans[index].features.map((feature, idx) => (
-                      <li key={idx} className="bg-gray-50 rounded px-3 py-1 shadow-sm flex items-center gap-2">
-                        <span className="text-green-500 text-base">•</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <button className="mt-6 w-full bg-sky-500 hover:bg-sky-600 text-white py-2 rounded-lg font-semibold transition">
-                    Choose Plan
-                  </button>
-                  <div className="mt-3">{plans[index].icon}</div>
-                </motion.div>
-              </AnimatePresence>
-
-              <button
-                onClick={handleNext}
-                className="p-2 rounded-full bg-gray-100 hover:bg-sky-100 transition shadow-sm border border-gray-200"
-                aria-label="Next"
-              >
-                <ChevronRight className="text-sky-500 w-5 h-5" />
+        {/* Desktop Grid Section */}
+        <div className="hidden md:grid grid-cols-3 gap-8 px-3 mt-10">
+          {pricingPlans.map((plan, index) => (
+            <div
+              key={index}
+              className="bg-white shadow-xl rounded-2xl px-8 py-10 text-center border border-gray-200"
+            >
+              <h2 className="text-3xl font-bold mb-4 text-gray-800">{plan.banner}</h2>
+              <p className="text-2xl font-semibold mb-6 text-blue-600">{plan.amount}</p>
+              <p className="text-gray-700 mb-6">{plan.description}</p>
+              <ul className="text-left text-gray-600 mb-6">
+                {plan.features.map((feature, idx) => (
+                  <li key={idx} className="mb-2 flex items-center">
+                    <span className="inline-block w-3 h-3 bg-blue-600 rounded-full mr-2"></span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition duration-300">
+                Choose Plan
               </button>
             </div>
-          </div>
-        )}
+          ))}
+        </div>
       </main>
+
+      <Footer />
     </>
   );
 }
