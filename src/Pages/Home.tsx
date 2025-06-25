@@ -1,55 +1,105 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Search, X } from 'lucide-react';
 import { motion } from 'framer-motion';
-import Navbar from '../components/Navbar'; // Adjust the import path as necessary
+import Navbar from '../components/Navbar';
 import companies from '../data/companies.json';
-import Footer from '../components/Footer'; // Adjust the import path as necessary
+import Footer from '../components/Footer';
+import Logo from '../assets/logo.png'; // Adjust the path as necessary
 
 const RECENT_KEY = 'recent_searches';
 
 export function Home() {
   const [query, setQuery] = useState('');
-  const [recent, setRecent] = useState([]);
+  const [recent, setRecent] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Load recent searches from localStorage
+  // Splash screen timeout
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Load recent searches
   useEffect(() => {
     const stored = localStorage.getItem(RECENT_KEY);
     if (stored) setRecent(JSON.parse(stored));
   }, []);
 
-  // Assuming companies.json contains an array of objects with 'name' and other fields
-  const companyNames = companies.map((c) => c.name);
+  // Type guard for a valid company object
+  function isValidCompany(c: any): c is { name: string } {
+    return (
+      c &&
+      typeof c.name === 'string' &&
+      typeof c.image === 'string' &&
+      typeof c.description === 'string' &&
+      typeof c.location === 'string' &&
+      typeof c.website === 'string' &&
+      Array.isArray(c.reviews) &&
+      typeof c.likes !== 'undefined' &&
+      typeof c.dislikes !== 'undefined' &&
+      Array.isArray(c.comments)
+    );
+  }
 
-  const filteredResults = query
+  // Ensure companyNames is a string[] and filter out invalid entries
+  const companyNames = Array.isArray(companies)
+    ? companies.filter(isValidCompany).map((c) => c.name)
+    : [];
+
+  const safeQuery = typeof query === 'string' ? query.trim() : '';
+
+  const filteredResults = safeQuery
     ? companyNames.filter((item) =>
-        item.toLowerCase().includes(query.toLowerCase())
+        item.toLowerCase().includes(safeQuery.toLowerCase())
       )
     : [];
 
-  const handleSearch = (text) => {
-    const q = text ?? query;
-    if (q.trim() === '') return;
+  const handleSearch = (text?: string) => {
+    const q = (typeof text === 'string' ? text : query).trim();
+    if (!q) return;
 
-    // Save to recent searches
     const updated = [q, ...recent.filter((item) => item !== q)].slice(0, 5);
     setRecent(updated);
     localStorage.setItem(RECENT_KEY, JSON.stringify(updated));
 
-    // Navigate to search page with query
     navigate(`/search?q=${encodeURIComponent(q)}`);
   };
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') handleSearch();
   };
 
-  const removeRecent = (item) => {
+  const removeRecent = (item: string) => {
     const updated = recent.filter((i) => i !== item);
     setRecent(updated);
     localStorage.setItem(RECENT_KEY, JSON.stringify(updated));
   };
+
+  // 🔥 Splash screen
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 to-purple-200 text-center">
+        <motion.img
+          src= {Logo} // Replace with your actual logo path
+          alt="Logo"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="w-[500px] h-[500px]  animate-bounce mb-4"
+        />
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="text-xl font-medium text-blue-700"
+        >
+          Getting things ready...
+        </motion.p>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -125,13 +175,13 @@ export function Home() {
           >
             {filteredResults.length > 0 ? (
               filteredResults.map((item, index) => (
-                <div
+                <Link
                   key={index}
-                  className="px-4 py-3 border-b last:border-b-0 hover:bg-gray-50 transition-all cursor-pointer text-gray-800"
-                  onClick={() => handleSearch(item)}
+                  className="block px-4 py-3 border-b last:border-b-0 hover:bg-gray-50 transition-all cursor-pointer text-gray-800"
+                  to={`/search?q=${encodeURIComponent(item)}`}
                 >
                   {item}
-                </div>
+                </Link>
               ))
             ) : (
               <div className="px-4 py-3 text-gray-500">No results found.</div>
@@ -154,12 +204,12 @@ export function Home() {
                   key={idx}
                   className="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full text-sm text-gray-700 hover:bg-gray-200 transition"
                 >
-                  <span
+                  <Link
                     className="cursor-pointer"
-                    onClick={() => handleSearch(item)}
+                    to={`/search?q=${encodeURIComponent(item)}`}
                   >
                     {item}
-                  </span>
+                  </Link>
                   <X
                     className="w-4 h-4 cursor-pointer text-gray-500 hover:text-red-600 transition"
                     onClick={() => removeRecent(item)}
@@ -221,10 +271,9 @@ export function Home() {
           </p>
         </motion.section>
       </main>
-
-      <Footer />
-
-      {/* Styles for decorative bubbles */}
+    
+      {/* Only render <Footer /> if it is a valid React component */}
+      {typeof Footer === 'function' && <Footer />}
     </>
   );
 }

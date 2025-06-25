@@ -8,7 +8,8 @@ import Payment from '../Dashboard/Payment';
 import Store from '../Dashboard/Store';
 import Web from '../Dashboard/Web';
 import Plugins from '../Dashboard/Plugins';
-import { Menu, X, DollarSign, Search } from 'lucide-react';
+import { Menu, DollarSign, Search } from 'lucide-react';
+import UserAvatar from '../components/UserAvatar'; // Adjust the import path as necessary
 
 function formatDate(date: Date) {
   const options: Intl.DateTimeFormatOptions = {
@@ -44,7 +45,7 @@ const Dashboard: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-pink-50 to-purple-100 font-sans flex flex-col md:flex-row relative">
+    <div className="min-h-screen  font-sans flex flex-col md:flex-row relative">
 
       {/* Mobile Navbar */}
       <div className="p-4 flex items-center justify-between md:hidden">
@@ -56,17 +57,16 @@ const Dashboard: React.FC = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-64 bg-white shadow-md p-5 z-40 transform transition-transform duration-300 ease-in-out
-          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:static md:flex md:flex-col border-r border-blue-100`}
+        className={`fixed top-0 left-0 h-full w-60 bg-white p-0 z-40 transform transition-transform duration-300 ease-in-out
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:static md:flex md:flex-col border-r border-blue-100 shadow-lg md:shadow-none`}
       >
-        <div className="flex justify-between items-center mb-6 md:hidden">
-          <h1 className="text-xl font-bold text-blue-700">📊 Dashboard</h1>
-          <button onClick={() => setSidebarOpen(false)}>
-            <X className="w-6 h-6 text-gray-800" />
-          </button>
+        {/* User Profile */}
+        <div className="flex flex-col items-center gap-1 py-6 border-b border-blue-50 bg-gradient-to-b from-blue-50 to-white">
+          <UserAvatar name="Abhaya Bikram Shahi" size={52} />
+          <span className="font-semibold text-gray-800 text-base leading-tight mt-1">Abhaya Bikram Shahi</span>
+          <span className="text-xs text-blue-500 font-medium">Pro User</span>
         </div>
-
-        <nav className="space-y-2">
+        <nav className="flex-1 flex flex-col gap-0.5 px-2 py-4">
           {tabs.map((tab) => (
             <button
               key={tab.key}
@@ -74,11 +74,11 @@ const Dashboard: React.FC = () => {
                 setActiveTab(tab.key);
                 setSidebarOpen(false);
               }}
-              className={`w-full flex items-center gap-3 p-2 rounded-md text-base font-medium tracking-wide
-                ${activeTab === tab.key ? 'text-blue-700 font-bold' : 'text-gray-600'}`}
+              className={`w-full flex items-center gap-2 p-2 rounded-md text-base font-medium tracking-wide transition-colors
+                ${activeTab === tab.key ? 'bg-blue-100 text-blue-700 font-bold' : 'text-gray-600 hover:bg-blue-50'}`}
             >
-              <span className="text-xl">{tab.emoji}</span>
-              {tab.label}
+              <span className="text-lg">{tab.emoji}</span>
+              <span className="truncate">{tab.label}</span>
             </button>
           ))}
         </nav>

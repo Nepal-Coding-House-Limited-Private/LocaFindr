@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import companies from '../data/companies.json';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { FaUserCircle } from 'react-icons/fa';
 import { ChevronDown, Search as SearchIcon, LayoutDashboard } from 'lucide-react';
 
@@ -48,10 +48,14 @@ const Search: React.FC = () => {
       return () => clearTimeout(timer);
     }
 
-    const filtered = companies.filter((c: Company) =>
-      c.name.toLowerCase().includes(query.trim().toLowerCase())
-    );
-    setResults(filtered);
+    // Fix: Accept both number and number[] for likes, and handle possible malformed data
+    const filtered = companies.filter((c: any) =>
+      c && c.name && query && typeof c.name === 'string' && c.name.toLowerCase().includes(query.trim().toLowerCase())
+    ).map((c: any) => ({
+      ...c,
+      likes: Array.isArray(c.likes) ? c.likes : typeof c.likes === 'number' ? Array(c.likes).fill(1) : [],
+    }));
+    setResults(filtered as Company[]);
   }, [query, navigate]);
 
   const toggleDetails = (companyName: string) => {
@@ -289,7 +293,7 @@ const Search: React.FC = () => {
                                 )}
                               </div>
                               <p>
-                                <span className="font-medium">Likes:</span> {company.likes.length}
+                                <span className="font-medium">Likes:</span> {typeof company.likes === 'number' ? company.likes : (Array.isArray(company.likes) ? company.likes.length : 0)}
                               </p>
                               <p>
                                 <span className="font-medium">Dislikes:</span> {company.dislikes}
@@ -327,3 +331,8 @@ const Search: React.FC = () => {
 };
 
 export default Search;
+
+/* If you have issues with 'react-helmet', try using 'react-helmet-async' instead:
+import { Helmet } from 'react-helmet-async';
+And wrap your app with <HelmetProvider> in App.tsx
+*/
