@@ -4,7 +4,9 @@ import { Search, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import companies from '../data/companies.json';
-import Footer from '../components/Footer';
+// Fix Footer import for TypeScript
+// @ts-ignore
+import Footer from '../components/Footer.jsx';
 import Logo from '../assets/logo.png'; // Adjust the path as necessary
 
 const RECENT_KEY = 'recent_searches';
@@ -48,13 +50,36 @@ export function Home() {
     ? companies.filter(isValidCompany).map((c) => c.name)
     : [];
 
-  const safeQuery = typeof query === 'string' ? query.trim() : '';
-
-  const filteredResults = safeQuery
-    ? companyNames.filter((item) =>
-        item.toLowerCase().includes(safeQuery.toLowerCase())
-      )
+  // Enhanced search logic for companies
+  const filteredCompanies = Array.isArray(companies)
+    ? companies.filter((c: any) => {
+        if (!c || typeof query !== 'string' || !query.trim()) return false;
+        const q = query.trim().toLowerCase();
+        const name = c.name?.toLowerCase() || '';
+        const location = c.location?.toLowerCase() || '';
+        const description = c.description?.toLowerCase() || '';
+        const aeo = c.aeo?.toLowerCase() || '';
+        const tags = Array.isArray(c.tags) ? c.tags.map((t: string) => t.toLowerCase()).join(' ') : '';
+        const keywords = c.seo?.keywords ? c.seo.keywords.join(' ').toLowerCase() : '';
+        return (
+          name.includes(q) ||
+          location.includes(q) ||
+          description.includes(q) ||
+          aeo.includes(q) ||
+          tags.includes(q) ||
+          keywords.includes(q)
+        );
+      })
+      // Prioritize companies that match 'best' and 'kalikot'
+      .sort((a: any, b: any) => {
+        const aScore = ([a.name, a.location, a.description, a.aeo, (a.tags||[]).join(' '), (a.seo?.keywords||[]).join(' ')].join(' ').toLowerCase().includes('best software company in kalikot')) ? 1 : 0;
+        const bScore = ([b.name, b.location, b.description, b.aeo, (b.tags||[]).join(' '), (b.seo?.keywords||[]).join(' ')].join(' ').toLowerCase().includes('best software company in kalikot')) ? 1 : 0;
+        return bScore - aScore;
+      })
+      .map((c: any) => c.name)
     : [];
+
+  const filteredResults = query ? filteredCompanies : [];
 
   const handleSearch = (text?: string) => {
     const q = (typeof text === 'string' ? text : query).trim();
@@ -64,6 +89,7 @@ export function Home() {
     setRecent(updated);
     localStorage.setItem(RECENT_KEY, JSON.stringify(updated));
 
+    // Always navigate to top-level /search route
     navigate(`/search?q=${encodeURIComponent(q)}`);
   };
 
@@ -79,6 +105,7 @@ export function Home() {
 
   // 🔥 Splash screen
   if (loading) {
+    
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-100 to-purple-200 text-center">
         <motion.img

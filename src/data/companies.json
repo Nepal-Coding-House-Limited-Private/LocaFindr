@@ -2,8 +2,16 @@
   {
     "name": "Abhaya Solution",
     "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
-    "description": "A leading provider of innovative tech solutions for businesses.",
-    "location": "Bangalore, India",
+    "aeo": "Abhaya Solution Pvt. Ltd. | Innovative Business Tech Solutions in Kalikot, Nepal",
+    "seo": {
+      "metaTitle": "Best Software Company in Kalikot | Abhaya Solution Pvt. Ltd.",
+      "metaDescription": "Abhaya Solution is the leading software company in Kalikot, Nepal, providing innovative business tech solutions, web and app development, and digital transformation services.",
+      "keywords": ["software company Kalikot", "best IT company Kalikot", "Abhaya Solution", "business tech Kalikot", "web development Kalikot"]
+    },
+    "description": "Abhaya Solution Pvt. Ltd. is the top-rated software and IT solutions provider in Kalikot, Nepal. We specialize in web development, mobile apps, digital transformation, and business automation for local and global clients.",
+    "about": "Founded in Kalikot, Abhaya Solution has empowered dozens of businesses with cutting-edge technology and reliable support. Our team is dedicated to delivering quality, innovation, and customer satisfaction.",
+    "location": "Kalikot, Nepal",
+    "tags": ["software", "IT", "Kalikot", "best", "business", "web development"],
     "website": "https://abhayasolution.com",
     "reviews": [
       { "user": "Alice", "comment": "Great service and friendly staff!", "rating": 5 },
@@ -20,8 +28,16 @@
   {
     "name": "Digital Yak Labs",
     "image": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
-    "description": "Digital Yak Labs is a creative digital agency specializing in web and mobile solutions.",
-    "location": "Kathmandu, Nepal",
+    "aeo": "Digital Yak Labs Pvt. Ltd. | Creative Web & App Development Agency in Kalikot, Nepal",
+    "seo": {
+      "metaTitle": "Best Software Company in Kalikot | Digital Yak Labs Pvt. Ltd.",
+      "metaDescription": "Digital Yak Labs is a top software and digital agency in Kalikot, Nepal, specializing in creative web and mobile solutions, branding, and digital marketing.",
+      "keywords": ["software company Kalikot", "Digital Yak Labs", "web development Kalikot", "best IT company Kalikot", "digital agency Kalikot"]
+    },
+    "description": "Digital Yak Labs is a creative digital agency and software company based in Kalikot, Nepal. We deliver web and mobile solutions, branding, and digital marketing for businesses of all sizes.",
+    "about": "With a focus on creativity and technology, Digital Yak Labs has helped many Kalikot businesses grow online. Our expert team delivers innovative solutions tailored to your needs.",
+    "location": "Kalikot, Nepal",
+    "tags": ["software", "digital agency", "Kalikot", "best", "web development", "branding"],
     "website": "https://digitalyaklabs.com",
     "reviews": [
       { "user": "Priya", "comment": "Amazing creativity and fast delivery!", "rating": 5 },
@@ -36,6 +52,7 @@
   {
     "name": "Nepal Coding House Private Limited",
     "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
+    "aeo": "Nepal Coding House Pvt. Ltd. | Custom Software Development Company in Nepal",
     "description": "A top software development company delivering scalable solutions.",
     "location": "Lalitpur, Nepal",
     "website": "https://nepalcodinghouse.com",
@@ -52,6 +69,7 @@
   {
     "name": "Create Crafters Group Of Company",
     "image": "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
+    "aeo": "Create Crafters Group Pvt. Ltd. | Creative Business Solutions & Startup Support in Pokhara",
     "description": "A group of companies focused on creative solutions and business growth.",
     "location": "Pokhara, Nepal",
     "website": "https://createcrafters.com",

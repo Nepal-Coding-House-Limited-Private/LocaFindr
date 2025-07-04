@@ -10,26 +10,27 @@ const Overview: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-xl font-semibold mb-4">Overview</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white p-4 rounded-lg shadow">
-          <h3 className="text-lg font-medium">Total Users</h3>
-          <p className="text-2xl">{userData.totalUsers}</p>
+    <div className="max-w-4xl mx-auto">
+      <h2 className="text-2xl font-bold text-blue-800 mb-6">Dashboard Overview</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="bg-white rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center">
+          <span className="text-3xl font-bold text-blue-700">{userData.totalUsers}</span>
+          <span className="text-gray-600 mt-2">Total Users</span>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow">
-          <h3 className="text-lg font-medium">Active Users</h3>
-          <p className="text-2xl">{userData.activeUsers}</p>
+        <div className="bg-white rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center">
+          <span className="text-3xl font-bold text-green-700">{userData.activeUsers}</span>
+          <span className="text-gray-600 mt-2">Active Users</span>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow">
-          <h3 className="text-lg font-medium">New Users (24h)</h3>
-          <p className="text-2xl">{userData.newUsers}</p>
+        <div className="bg-white rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center">
+          <span className="text-3xl font-bold text-purple-700">{userData.newUsers}</span>
+          <span className="text-gray-600 mt-2">New Users (24h)</span>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow">
-          <h3 className="text-lg font-medium">Avg. Session Duration</h3>
-          <p className="text-2xl">{userData.sessionDuration}</p>
+        <div className="bg-white rounded-xl shadow p-6 border border-gray-100 flex flex-col items-center">
+          <span className="text-3xl font-bold text-pink-700">{userData.sessionDuration}</span>
+          <span className="text-gray-600 mt-2">Avg. Session Duration</span>
         </div>
       </div>
+      {/* You can add more summary or charts here if needed */}
     </div>
   );
 };

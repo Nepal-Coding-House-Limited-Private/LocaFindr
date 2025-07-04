@@ -4,7 +4,7 @@ import {Phone } from "lucide-react";
 import { FcGoogle } from "react-icons/fc";
 import { ImAppleinc } from "react-icons/im";
 
-function Login() {
+function Register() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
@@ -33,7 +33,7 @@ function Login() {
       <main className="flex flex-col items-center justify-center px-4 min-h-screen">
         <div className="w-full max-w-md bg-white rounded-2xl p-8 flex flex-col items-center gap-6 mt-8">
           <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-2">
-            Welcome Back
+            Create New Account
           </h2>
 
           <form onSubmit={handleSubmit} className="w-full flex flex-col gap-5">
@@ -81,9 +81,9 @@ function Login() {
           </form>
 
           <div className="quries flex gap-2 text-sm">
-            <p className="text-gray-600">Don’t have an account?</p>
+            <p className="text-gray-600">Login?</p>
             <Link to="/auth/register" className="text-blue-600 hover:underline font-medium">
-              Sign Up
+              Login
             </Link>
           </div>
 
@@ -124,4 +124,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
